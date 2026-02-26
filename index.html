@@ -1,93 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three.js Voxel Game</title>
-    <style>
-        body { margin: 0; }
-        canvas { display: block; }
-        #inventory { position: absolute; top: 10px; left: 10px; background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 5px; }
-    </style>
+    <title>GitHub Pages</title>
 </head>
 <body>
-    <div id="inventory">Inventory: <span id="items"></span></div>
-    <script src="https://threejs.org/build/three.js"></script>
-    <script>
-        let scene, camera, renderer, cube, raycaster;
-        let inventory = [];
-        const blocks = [];
-
-        init();
-        animate();
-
-        function init() {
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            renderer = new THREE.WebGLRenderer();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.body.appendChild(renderer.domElement);
-
-            // Add a simple plane
-            const geometry = new THREE.BoxGeometry(1, 1, 1);
-            const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-            cube = new THREE.Mesh(geometry, material);
-            scene.add(cube);
-
-            camera.position.z = 5;
-
-            raycaster = new THREE.Raycaster();
-
-            window.addEventListener('resize', onWindowResize);
-            window.addEventListener('click', onClick);
-            window.addEventListener('keypress', onKeyPress);
-        }
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        function onClick(event) {
-            const mouse = new THREE.Vector2();
-            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-            raycaster.setFromCamera(mouse, camera);
-            const intersects = raycaster.intersectObjects(scene.children);
-            if (intersects.length > 0) {
-                const intersected = intersects[0].object;
-                scene.remove(intersected);
-                updateInventory('Block Removed');
-            }
-        }
-
-        function onKeyPress(event) {
-            if (event.key === 'b') {
-                addBlock();
-            }
-        }
-
-        function addBlock() {
-            const geometry = new THREE.BoxGeometry(1, 1, 1);
-            const material = new THREE.MeshBasicMaterial({ color: Math.random() * 0xffffff });
-            const block = new THREE.Mesh(geometry, material);
-            block.position.set((Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10);
-            scene.add(block);
-            blocks.push(block);
-            updateInventory('Block Added');
-        }
-
-        function updateInventory(message) {
-            inventory.push(message);
-            document.getElementById('items').innerText = inventory.join(', ');
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            renderer.render(scene, camera);
-        }
-    </script>
+    <h1>Welcome to Vooglercraft!</h1>
+    <p>This is a placeholder for your GitHub Pages content.</p>
 </body>
 </html>
