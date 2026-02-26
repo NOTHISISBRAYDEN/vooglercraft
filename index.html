@@ -1,0 +1,41 @@
+<div id="commandConsole">
+  <input type="text" id="commandInput" placeholder="Enter command..." />
+  <button onclick="executeCommand()">Execute</button>
+  <div id="commandOutput"></div>
+</div>
+<script>
+  function executeCommand() {
+    const command = document.getElementById('commandInput').value;
+    const output = document.getElementById('commandOutput');
+    let response;
+
+    switch (command) {
+      case '/give':
+        response = "Use /give <item> to receive specified item.";
+        break;
+      case '/gamemode creative':
+        response = "Switched to Creative mode.";
+        break;
+      case '/gamemode survival':
+        response = "Switched to Survival mode.";
+        break;
+      case '/time set day':
+        response = "Time set to day.";
+        break;
+      case '/time set night':
+        response = "Time set to night.";
+        break;
+      case '/clear':
+        response = "Inventory cleared.";
+        break;
+      case '/help':
+        response = "Available commands: /give, /gamemode creative/survival, /time set day/night, /clear";
+        break;
+      default:
+        response = "Unknown command. Type /help for available commands.";
+    }
+
+    output.innerHTML += `<div>${response}</div>`;
+    document.getElementById('commandInput').value = ''; // Clear input after execution
+  }
+</script>
